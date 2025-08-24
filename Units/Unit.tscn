@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://lf8wbuogecoi"]
+
+[ext_resource type="Texture2D" uid="uid://yd3uv4y70rl3" path="res://Units/Sprites/MiniSpearMan.png" id="1_0r52t"]
+[ext_resource type="Script" uid="uid://cvm4acsopobp6" path="res://Units/Unit.gd" id="1_7wytu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7wytu"]
+size = Vector2(12, 14)
+
+[node name="Unit" type="CharacterBody2D"]
+script = ExtResource("1_7wytu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_0r52t")
+hframes = 7
+vframes = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_7wytu")
