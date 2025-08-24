@@ -51,3 +51,5 @@ offset_top = 2.0
 offset_right = 480.0
 offset_bottom = 25.0
 text = "Gold: 100"
+
+[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_spawn_button_pressed"]
