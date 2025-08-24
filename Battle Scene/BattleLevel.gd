@@ -3,27 +3,46 @@
 
 extends Node2D
 
+# --- Signals ---
+# A signal to announce that the gold amount has changed.
+signal gold_changed(new_amount)
+
+
 # --- Variables ---
 
 # A reference to the Unit scene we want to spawn.
-# We will drag and drop our Unit.tscn file into this variable in the Inspector.
 @export var unit_scene: PackedScene
 
-# Player's starting gold.
-var gold: int = 100
+# A reference to the Label node that displays the gold amount.
+@export var gold_label: Label
+
+# Player's starting gold. We use a setter function to automatically emit the signal.
+var gold: int = 100:
+	set(value):
+		gold = value
+		gold_changed.emit(gold) # Announce that the gold has changed.
 
 # Cost of one unit.
 var unit_cost: int = 25
 
 
+# --- Godot Lifecycle Functions ---
+
+func _ready():
+	# Connect our signal to the function that updates the label.
+	gold_changed.connect(_on_gold_changed)
+	# Update the label with the starting amount of gold.
+	_on_gold_changed(gold)
+
+
 # --- UI Handling ---
 
-# This function will be connected to our "Spawn Unit" button's 'pressed' signal.
+# This function is connected to the "Spawn Unit" button's 'pressed' signal.
 func _on_spawn_button_pressed():
 	# Check if the player has enough gold.
 	if gold >= unit_cost:
-		# If yes, subtract the cost.
-		gold -= unit_cost
+		# If yes, subtract the cost. This will trigger the setter and emit the signal.
+		self.gold -= unit_cost 
 		print("Unit purchased! Gold remaining: ", gold)
 		
 		# Create a new instance of our unit scene.
@@ -33,14 +52,16 @@ func _on_spawn_button_pressed():
 		add_child(new_unit)
 		
 		# Set its starting position. 
-		# You can create a Marker2D node named "SpawnPoint" in your scene
-		# to define where units should appear.
-		# For now, we'll just use a fixed coordinate.
 		new_unit.position = Vector2(100, 300) 
 	else:
 		# If not enough gold, print a message to the console.
 		print("Not enough gold! Need ", unit_cost)
 
 
-func _on_button_pressed() -> void:
-	pass # Replace with function body.
+# --- Signal Callbacks ---
+
+# This function is called whenever the 'gold_changed' signal is emitted.
+func _on_gold_changed(new_amount: int):
+	# Update the text of our label.
+	if gold_label:
+		gold_label.text = "Gold: " + str(new_amount)

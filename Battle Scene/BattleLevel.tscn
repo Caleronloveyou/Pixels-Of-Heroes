@@ -8,9 +8,10 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3p53d"]
 size = Vector2(493, 16)
 
-[node name="BattleLevel" type="Node2D"]
+[node name="BattleLevel" type="Node2D" node_paths=PackedStringArray("gold_label")]
 script = ExtResource("1_b7woj")
 unit_scene = ExtResource("1_mka4x")
+gold_label = NodePath("CanvasLayer/Label")
 
 [node name="Background" type="Sprite2D" parent="."]
 z_index = -4096
@@ -43,3 +44,10 @@ offset_right = 8.0
 offset_bottom = 8.0
 text = "Нанять пехотинца (25 G)"
 metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 408.0
+offset_top = 2.0
+offset_right = 480.0
+offset_bottom = 25.0
+text = "Gold: 100"
