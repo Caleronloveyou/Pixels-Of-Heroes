@@ -52,7 +52,7 @@ func _on_spawn_button_pressed():
 		add_child(new_unit)
 		
 		# Set its starting position. 
-		new_unit.position = Vector2(100, 300) 
+		new_unit.position = Vector2(100, 250) 
 	else:
 		# If not enough gold, print a message to the console.
 		print("Not enough gold! Need ", unit_cost)
