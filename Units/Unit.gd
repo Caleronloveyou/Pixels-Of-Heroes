@@ -112,3 +112,4 @@ func _on_attack_timer_timeout():
 # this is some bullshit for a progressbar but I didn't figure it out yet -Cal
 func _on_reset_visibility_timeout() -> void:
 	pass # Replace with function body.
+	#I just added this useless text to push changes
