@@ -37,6 +37,13 @@ position = Vector2(458, 242)
 scale = Vector2(0.03625, 0.03625)
 texture = ExtResource("3_yv4ry")
 
+[node name="Unit" parent="." instance=ExtResource("1_mka4x")]
+position = Vector2(49, 256)
+
+[node name="Unit2" parent="." instance=ExtResource("1_mka4x")]
+position = Vector2(373, 255)
+team = 2
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Button" type="Button" parent="CanvasLayer"]

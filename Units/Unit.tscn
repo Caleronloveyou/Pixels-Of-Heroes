@@ -57,4 +57,7 @@ show_percentage = false
 [node name="ResetVisibility" type="Timer" parent="ProgressBar"]
 one_shot = true
 
+[connection signal="body_entered" from="DetectionZone" to="." method="_on_detection_zone_body_entered"]
+[connection signal="body_exited" from="DetectionZone" to="." method="_on_detection_zone_body_exited"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
 [connection signal="timeout" from="ProgressBar/ResetVisibility" to="." method="_on_reset_visibility_timeout"]
