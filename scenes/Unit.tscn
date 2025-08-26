@@ -1,7 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://lf8wbuogecoi"]
+[gd_scene load_steps=12 format=3 uid="uid://lf8wbuogecoi"]
 
 [ext_resource type="Texture2D" uid="uid://yd3uv4y70rl3" path="res://Units/Sprites/MiniSpearMan.png" id="1_0r52t"]
-[ext_resource type="Script" uid="uid://cvm4acsopobp6" path="res://Units/Unit.gd" id="1_7wytu"]
+[ext_resource type="Script" uid="uid://cvm4acsopobp6" path="res://Scripts/Unit.gd" id="1_7wytu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7wytu"]
 size = Vector2(12, 14)
@@ -19,14 +19,51 @@ expand_margin_bottom = 5.0
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5rqvx"]
 bg_color = Color(0, 0.652862, 0.256558, 1)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_fqlnf"]
+atlas = ExtResource("1_0r52t")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aa524"]
+atlas = ExtResource("1_0r52t")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nqku5"]
+atlas = ExtResource("1_0r52t")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_appqu"]
+atlas = ExtResource("1_0r52t")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pjl3l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fqlnf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aa524")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nqku5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_appqu")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 8.0
+}]
+
 [node name="Unit" type="CharacterBody2D"]
 collision_mask = 2
 script = ExtResource("1_7wytu")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -8)
 texture = ExtResource("1_0r52t")
 hframes = 7
-vframes = 4
+vframes = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_7wytu")
@@ -56,6 +93,15 @@ show_percentage = false
 
 [node name="ResetVisibility" type="Timer" parent="ProgressBar"]
 one_shot = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="ProgressBar"]
+visible = false
+position = Vector2(40, 15)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_pjl3l")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.75172
 
 [connection signal="body_entered" from="DetectionZone" to="." method="_on_detection_zone_body_entered"]
 [connection signal="body_exited" from="DetectionZone" to="." method="_on_detection_zone_body_exited"]

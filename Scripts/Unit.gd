@@ -7,7 +7,7 @@ extends CharacterBody2D
 @export var move_speed: float = 50.0
 @export var health: int = 100
 @export var max_health: int = 100
-@export var attack_damage: int = 10
+@export var attack_damage: int = 20
 @export var attack_rate: float = 1.0 # Attacks per second
 
 # 1 for player, 2 for enemy

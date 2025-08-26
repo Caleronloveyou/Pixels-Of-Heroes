@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d12fyhrmj0evv"
-path="res://.godot/imported/castle.png-c92e256c44ef5c66fe326a89b5fc84a7.ctex"
+path="res://.godot/imported/castle.png-0314cff614522c45e9f9a9ee447349ff.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Battle Scene/Sprites/castle.png"
-dest_files=["res://.godot/imported/castle.png-c92e256c44ef5c66fe326a89b5fc84a7.ctex"]
+source_file="res://scenes/Battle Scene/Sprites/castle.png"
+dest_files=["res://.godot/imported/castle.png-0314cff614522c45e9f9a9ee447349ff.ctex"]
 
 [params]
 
