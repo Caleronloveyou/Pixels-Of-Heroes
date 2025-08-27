@@ -1,18 +1,22 @@
-[gd_scene load_steps=7 format=3 uid="uid://bbsnsas5t8rif"]
+[gd_scene load_steps=8 format=3 uid="uid://bbsnsas5t8rif"]
 
 [ext_resource type="Script" uid="uid://bnsmjjx6ccfk1" path="res://Scripts/BattleLevel.gd" id="1_q5ky5"]
-[ext_resource type="PackedScene" uid="uid://lf8wbuogecoi" path="res://scenes/Unit.tscn" id="2_3d6m4"]
+[ext_resource type="PackedScene" uid="uid://lf8wbuogecoi" path="res://Units/Scenes/Unit.tscn" id="2_3d6m4"]
+[ext_resource type="PackedScene" uid="uid://cbsm7qapqs6ow" path="res://scenes/end_screen.tscn" id="3_3d6m4"]
 [ext_resource type="Texture2D" uid="uid://cqi1t3su7rk5e" path="res://scenes/Battle Scene/Sprites/Summer3.png" id="3_54ydk"]
-[ext_resource type="Texture2D" uid="uid://d12fyhrmj0evv" path="res://scenes/Battle Scene/Sprites/castle.png" id="4_eqnpu"]
 [ext_resource type="Script" uid="uid://cuxdmh8xktpos" path="res://Scripts/enemy_spawner.gd" id="5_fqtvy"]
+[ext_resource type="PackedScene" uid="uid://cywl6wmiuywp3" path="res://Castles/Scenes/base.tscn" id="5_q5ky5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3p53d"]
 size = Vector2(493, 16)
 
-[node name="BattleLevel" type="Node2D" node_paths=PackedStringArray("gold_label")]
+[node name="BattleLevel" type="Node2D" node_paths=PackedStringArray("gold_label", "player_base", "enemy_base")]
 script = ExtResource("1_q5ky5")
 unit_scene = ExtResource("2_3d6m4")
 gold_label = NodePath("CanvasLayer/Label")
+player_base = NodePath("Castles/Base1")
+enemy_base = NodePath("Castles/Base2")
+end_screen_scene = ExtResource("3_3d6m4")
 
 [node name="Background" type="Sprite2D" parent="."]
 z_index = -4096
@@ -26,24 +30,10 @@ texture = ExtResource("3_54ydk")
 position = Vector2(236, 272)
 shape = SubResource("RectangleShape2D_3p53d")
 
-[node name="CastleLayer" type="Node" parent="."]
-
-[node name="Castle" type="Sprite2D" parent="CastleLayer"]
-texture_filter = 1
-position = Vector2(22, 242)
-scale = Vector2(0.03625, 0.03625)
-texture = ExtResource("4_eqnpu")
-
-[node name="Castle_enemy" type="Sprite2D" parent="CastleLayer"]
-texture_filter = 1
-position = Vector2(458, 242)
-scale = Vector2(0.03625, 0.03625)
-texture = ExtResource("4_eqnpu")
-
 [node name="Units" type="Node" parent="."]
 
 [node name="Unit" parent="Units" instance=ExtResource("2_3d6m4")]
-position = Vector2(49, 256)
+position = Vector2(122, 254)
 
 [node name="Unit2" parent="Units" instance=ExtResource("2_3d6m4")]
 position = Vector2(373, 255)
@@ -75,4 +65,16 @@ autostart = true
 [node name="SpawnPoint" type="Marker2D" parent="EnemySpawner"]
 position = Vector2(410, 254)
 
+[node name="Castles" type="Node" parent="."]
+
+[node name="Base1" parent="Castles" instance=ExtResource("5_q5ky5")]
+texture_filter = 1
+position = Vector2(40, 264)
+
+[node name="Base2" parent="Castles" instance=ExtResource("5_q5ky5")]
+texture_filter = 1
+position = Vector2(442, 264)
+team = 2
+
+[connection signal="gold_changed" from="." to="." method="_on_gold_changed"]
 [connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_spawn_button_pressed"]

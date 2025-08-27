@@ -41,16 +41,17 @@ func _ready():
 		detection_zone.set_collision_mask_value(1, true)
 		detection_zone.set_collision_mask_value(2, false)
 		# Flip the sprite for the enemy
-		$Sprite2D.flip_h = true
+		$AnimatedSprite2D.flip_h = true
+
 
 
 	# Set up the attack timer
 	attack_timer.wait_time = 1.0 / attack_rate
 	
 	# Connect signals
-	detection_zone.body_entered.connect(_on_detection_zone_body_entered)
-	detection_zone.body_exited.connect(_on_detection_zone_body_exited)
-	attack_timer.timeout.connect(_on_attack_timer_timeout)
+	#detection_zone.body_entered.connect(_on_detection_zone_body_entered)
+	#detection_zone.body_exited.connect(_on_detection_zone_body_exited)
+	#attack_timer.timeout.connect(_on_attack_timer_timeout)
 	
 	# Initialize health bar
 	health_bar.max_value = max_health
