@@ -3,10 +3,8 @@
 
 extends State
 
-var unit
-
 func _ready():
-	unit = state_machine.get_parent()
+	#unit = state_machine.get_parent()
 	# We connect the timer's signal here, within the state that uses it.
 	unit.attack_timer.timeout.connect(_on_attack_timer_timeout)
 

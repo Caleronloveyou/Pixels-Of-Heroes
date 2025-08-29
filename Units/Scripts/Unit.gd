@@ -79,6 +79,7 @@ func _initialize_state_machine():
 	# Pass a reference of the state machine to each state so they can communicate back.
 	for state in state_machine.states.values():
 		state.state_machine = state_machine
+		state.unit = self
 
 
 # --- Combat Logic ---

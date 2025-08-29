@@ -4,15 +4,16 @@
 extends State
 
 # A reference to the unit (the parent of the state machine).
-var unit
+#var unit
 
-func _ready():
+#func _ready():
 	# Get a reference to the unit node once.
-	unit = state_machine.get_parent()
+	#unit = state_machine.get_node()
 
 # When we enter this state, we make sure the unit is set to move.
 func enter():
 	unit.is_moving = true
+	#return
 ## ^ ITS BROKEN
 
 

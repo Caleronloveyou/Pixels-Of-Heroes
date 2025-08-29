@@ -6,6 +6,7 @@ class_name State
 
 # A reference to the StateMachine that owns this state.
 var state_machine
+var unit
 
 # This function is called when the state machine enters this state.
 func enter():
